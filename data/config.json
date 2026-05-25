@@ -1,0 +1,116 @@
+{
+  "titles": [
+    {
+      "min": 90,
+      "name": "愛媛県政マイスター",
+      "description": "幅広い分野を横断して理解できています。研修でも周囲を支えられる水準です。"
+    },
+    {
+      "min": 80,
+      "name": "県政横断プレイヤー",
+      "description": "地域課題と政策分野のつながりをよく押さえています。"
+    },
+    {
+      "min": 60,
+      "name": "えひめ基礎マスター",
+      "description": "県職員としての基礎知識が着実に身についています。"
+    },
+    {
+      "min": 40,
+      "name": "えひめ学習中",
+      "description": "解説と出典を確認しながら、得意分野を増やしていける段階です。"
+    },
+    {
+      "min": 0,
+      "name": "県政ビギナー",
+      "description": "ここからが県政理解の入口です。復習で一つずつ土台を固めましょう。"
+    }
+  ],
+  "categories": [
+    {
+      "id": "C01",
+      "name": "県土・市町・地域区分",
+      "short_name": "県土",
+      "description": "地理、地域区分、市町構成"
+    },
+    {
+      "id": "C02",
+      "name": "人口・統計",
+      "short_name": "人口",
+      "description": "人口減少、自然動態、社会動態"
+    },
+    {
+      "id": "C03",
+      "name": "産業・経済",
+      "short_name": "産業",
+      "description": "製造業、地場産業、地域経済"
+    },
+    {
+      "id": "C04",
+      "name": "農林水産",
+      "short_name": "農林水産",
+      "description": "柑橘、水産、農業、林業"
+    },
+    {
+      "id": "C05",
+      "name": "観光・文化",
+      "short_name": "観光文化",
+      "description": "観光資源、文化資源、交流人口"
+    },
+    {
+      "id": "C06",
+      "name": "防災・環境",
+      "short_name": "防災環境",
+      "description": "南海トラフ、豪雨災害、環境政策"
+    },
+    {
+      "id": "C07",
+      "name": "県政・行政運営",
+      "short_name": "県政",
+      "description": "総合計画、予算、DX、官民共創"
+    },
+    {
+      "id": "C08",
+      "name": "医療・教育・交通",
+      "short_name": "生活基盤",
+      "description": "医療、教育、公共交通"
+    }
+  ],
+  "modes": {
+    "first": {
+      "name": "はじめてモード",
+      "count": 10,
+      "target": "新規採用職員",
+      "duration": "5分",
+      "difficulty": "基礎中心"
+    },
+    "training": {
+      "name": "研修モード",
+      "count": 30,
+      "target": "研修・確認テスト",
+      "duration": "15から20分",
+      "difficulty": "基礎・標準"
+    },
+    "random10": {
+      "name": "ランダム10問",
+      "count": 10,
+      "target": "短時間学習",
+      "duration": "5分",
+      "difficulty": "全難易度"
+    },
+    "all100": {
+      "name": "100問チャレンジ",
+      "count": 100,
+      "target": "自己学習・総復習",
+      "duration": "45分以上",
+      "difficulty": "全難易度"
+    },
+    "diagnosis": {
+      "name": "県職員力診断",
+      "count": 20,
+      "target": "既存職員・腕試し",
+      "duration": "10から15分",
+      "difficulty": "標準・応用中心"
+    }
+  }
+}
