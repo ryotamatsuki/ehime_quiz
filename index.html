@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>愛媛県クイズ100</title>
+    <meta
+      name="description"
+      content="愛媛県の県土・人口・産業・観光・防災・県政を学ぶ、新規採用職員向けクイズ教材。"
+    >
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="site-header">
+        <a class="brand" href="#home" data-nav="home" aria-label="トップへ">
+          <span class="brand-mark" aria-hidden="true">愛</span>
+          <span>
+            <strong>愛媛県クイズ100</strong>
+            <small>新規採用職員向け基礎力チェック</small>
+          </span>
+        </a>
+        <nav class="top-nav" aria-label="主要メニュー">
+          <button class="nav-button" type="button" data-nav="home">トップ</button>
+          <button class="nav-button" type="button" data-nav="modes">モード</button>
+          <button class="nav-button" type="button" data-nav="sources">出典</button>
+          <button class="nav-button" type="button" data-nav="about">教材概要</button>
+        </nav>
+      </header>
+
+      <main id="app" tabindex="-1">
+        <section class="view view-home is-active" id="view-home" aria-labelledby="home-title">
+          <div class="hero">
+            <img
+              src="assets/ehime_quiz_promotional_collage_poster.png"
+              alt="愛媛県の地図、柑橘、瀬戸内海、産業、防災、行政資料を組み合わせた愛媛県クイズのキービジュアル"
+              class="hero-image"
+            >
+            <div class="hero-shade"></div>
+            <div class="hero-content">
+              <p class="eyebrow">県職員としての基礎リテラシー教材</p>
+              <h1 id="home-title">愛媛県クイズ100</h1>
+              <p class="hero-lead">県土・人口・産業・観光・防災・県政を、解説と出典で確認しながら学べます。</p>
+              <div class="hero-actions">
+                <button class="primary-action" type="button" data-start-mode="first">はじめる</button>
+                <button class="secondary-action" type="button" data-nav="modes">モードを選ぶ</button>
+              </div>
+            </div>
+          </div>
+
+          <section class="status-band" aria-label="教材ステータス">
+            <div>
+              <strong id="question-total">100</strong>
+              <span>問題バンク</span>
+            </div>
+            <div>
+              <strong id="category-total">8</strong>
+              <span>カテゴリ</span>
+            </div>
+            <div>
+              <strong id="source-total">0</strong>
+              <span>出典</span>
+            </div>
+            <div>
+              <strong>4択</strong>
+              <span>自動採点</span>
+            </div>
+          </section>
+
+          <section class="resume-panel is-hidden" id="resume-panel" aria-live="polite">
+            <div>
+              <strong>前回の続きがあります</strong>
+              <p id="resume-text"></p>
+            </div>
+            <div class="inline-actions">
+              <button class="secondary-action compact" type="button" id="resume-button">再開</button>
+              <button class="ghost-action compact" type="button" id="discard-save-button">削除</button>
+            </div>
+          </section>
+
+          <section class="quick-modes" aria-labelledby="quick-title">
+            <div class="section-heading">
+              <p class="eyebrow">Quick Start</p>
+              <h2 id="quick-title">すぐ始める</h2>
+            </div>
+            <div class="quick-grid" id="quick-mode-grid"></div>
+          </section>
+        </section>
+
+        <section class="view view-modes" id="view-modes" aria-labelledby="modes-title">
+          <div class="page-heading">
+            <p class="eyebrow">Mode Select</p>
+            <h2 id="modes-title">出題モード</h2>
+            <p>研修、自己学習、カテゴリ復習に合わせて出題範囲を切り替えます。</p>
+          </div>
+
+          <div class="mode-settings" aria-label="研修モード設定">
+            <label class="check-control">
+              <input type="checkbox" id="training-review-toggle" checked>
+              <span>研修モードも各問後に解説を表示</span>
+            </label>
+            <label class="check-control">
+              <input type="checkbox" id="training-timer-toggle">
+              <span>研修モードで20分タイマーを使う</span>
+            </label>
+          </div>
+
+          <div class="mode-grid" id="mode-grid"></div>
+        </section>
+
+        <section class="view view-categories" id="view-categories" aria-labelledby="categories-title">
+          <div class="page-heading">
+            <p class="eyebrow">Category Select</p>
+            <h2 id="categories-title">カテゴリ別モード</h2>
+            <p>重点的に確認したい政策領域を選んでください。</p>
+          </div>
+          <div class="category-grid" id="category-grid"></div>
+        </section>
+
+        <section class="view view-quiz" id="view-quiz" aria-labelledby="quiz-question">
+          <div class="quiz-layout">
+            <aside class="quiz-side" aria-label="進捗">
+              <div class="score-mini">
+                <span>Score</span>
+                <strong id="live-score">0</strong>
+              </div>
+              <div class="progress-ring" aria-hidden="true">
+                <span id="progress-percent">0%</span>
+              </div>
+              <div class="quiz-side-meta">
+                <span id="quiz-mode-name">モード</span>
+                <span id="quiz-position">0 / 0</span>
+                <span class="timer is-hidden" id="timer-display">20:00</span>
+              </div>
+              <button class="ghost-action full" type="button" id="quit-button">トップへ戻る</button>
+            </aside>
+
+            <section class="quiz-main">
+              <div class="progress-track" aria-hidden="true">
+                <div class="progress-fill" id="progress-fill"></div>
+              </div>
+              <div class="question-meta">
+                <span class="tag" id="category-tag">カテゴリ</span>
+                <span class="tag" id="difficulty-tag">難易度</span>
+                <span class="tag muted" id="update-tag">年度更新</span>
+              </div>
+              <h2 id="quiz-question"></h2>
+              <div class="choices" id="choices" role="list"></div>
+
+              <section class="feedback-panel is-hidden" id="feedback-panel" aria-live="polite">
+                <div class="feedback-head">
+                  <strong id="feedback-title"></strong>
+                  <span id="correct-answer"></span>
+                </div>
+                <p id="feedback-explanation"></p>
+                <div class="source-box" id="feedback-sources"></div>
+                <button class="primary-action" type="button" id="next-button">次へ</button>
+              </section>
+            </section>
+          </div>
+        </section>
+
+        <section class="view view-results" id="view-results" aria-labelledby="results-title">
+          <div class="result-hero">
+            <div>
+              <p class="eyebrow">Result</p>
+              <h2 id="results-title">結果</h2>
+              <p id="result-title-description"></p>
+            </div>
+            <div class="score-display">
+              <strong id="result-rate">0%</strong>
+              <span id="result-score">0 / 0</span>
+            </div>
+          </div>
+
+          <div class="result-actions">
+            <button class="primary-action" type="button" id="retry-button">もう一度挑戦</button>
+            <button class="secondary-action" type="button" id="review-misses-button">間違えた問題を復習</button>
+            <button class="ghost-action" type="button" data-nav="home">トップへ</button>
+          </div>
+
+          <section class="result-section" aria-labelledby="category-results-title">
+            <div class="section-heading">
+              <p class="eyebrow">Category</p>
+              <h3 id="category-results-title">カテゴリ別正答率</h3>
+            </div>
+            <div class="category-results" id="category-results"></div>
+          </section>
+
+          <section class="result-section" id="review-section" aria-labelledby="review-title">
+            <div class="section-heading">
+              <p class="eyebrow">Review</p>
+              <h3 id="review-title">復習</h3>
+            </div>
+            <div class="review-list" id="review-list"></div>
+          </section>
+        </section>
+
+        <section class="view view-sources" id="view-sources" aria-labelledby="sources-title">
+          <div class="page-heading">
+            <p class="eyebrow">Sources</p>
+            <h2 id="sources-title">出典一覧</h2>
+            <p>各問題に紐づく根拠資料を確認できます。</p>
+          </div>
+          <label class="search-field">
+            <span>出典検索</span>
+            <input type="search" id="source-search" autocomplete="off" placeholder="資料名・発行主体・URL">
+          </label>
+          <div class="source-list" id="source-list"></div>
+        </section>
+
+        <section class="view view-about" id="view-about" aria-labelledby="about-title">
+          <div class="page-heading">
+            <p class="eyebrow">About</p>
+            <h2 id="about-title">この教材について</h2>
+            <p>愛媛県の新規採用職員が、県政理解につながる基礎知識を短時間で確認するためのブラウザ教材です。</p>
+          </div>
+          <div class="about-grid">
+            <article class="info-card">
+              <h3>目的</h3>
+              <p>県土、人口、産業、防災、行政運営などを横断的に学び、配属後の業務理解の土台を作ります。</p>
+            </article>
+            <article class="info-card">
+              <h3>運用</h3>
+              <p>個人情報の入力やサーバー保存は行わず、問題データはJSONで管理します。</p>
+            </article>
+            <article class="info-card">
+              <h3>更新</h3>
+              <p>人口、予算、統計値など年度更新が必要な問題には更新対象の表示を付けています。</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="view view-error" id="view-error" aria-labelledby="error-title">
+          <div class="error-panel">
+            <p class="eyebrow">Error</p>
+            <h2 id="error-title">問題データを読み込めませんでした</h2>
+            <p id="error-message"></p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="game.js" defer></script>
+  </body>
+</html>
