@@ -450,7 +450,7 @@ function renderSources(query) {
 
   els.sourceList.innerHTML = sources
     .map((source) => {
-      const url = source.url ? `<a href="${escapeAttribute(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.url)}</a>` : "URL未設定";
+      const url = safeHttpURL(source.url) ? `<a href="${escapeAttribute(safeHttpURL(source.url))}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.url)}</a>` : "URL未設定";
       return `
         <article class="source-card">
           <div class="meta-row">
@@ -743,8 +743,8 @@ function renderFeedback(question, answer, animate) {
 }
 
 function renderSourceItem(source) {
-  const link = source.url
-    ? `<a href="${escapeAttribute(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.title)}</a>`
+  const link = safeHttpURL(source.url)
+    ? `<a href="${escapeAttribute(safeHttpURL(source.url))}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.title)}</a>`
     : escapeHtml(source.title);
   return `
     <div class="source-item">
@@ -1048,6 +1048,17 @@ function escapeHtml(value) {
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
+}
+
+// Reject executable URL schemes even when HTML attribute encoding is used.
+function safeHttpURL(value) {
+  if (!value) return "";
+  try {
+    const url = new URL(String(value), window.location.href);
+    return ["http:", "https:"].includes(url.protocol) ? url.href : "";
+  } catch {
+    return "";
+  }
 }
 
 function escapeAttribute(value) {
